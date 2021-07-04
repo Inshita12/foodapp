@@ -1,5 +1,5 @@
 import React ,{useRef,useState} from 'react';
-import './MealForm.css'
+
 import Input from './Input';
 const MealForm=props=>{ 
    const[amountisValid ,setamountisValid] =useState(true);
@@ -27,7 +27,6 @@ props.onAddtoCart(enteredAmountNumber);
      <form id="form" onSubmit={submitHandler}>
          <Input 
          ref={amountInputRef}
-        label="Amount"
          input={{
              id:'amount'+props.id,
              type:'number',
@@ -38,7 +37,7 @@ props.onAddtoCart(enteredAmountNumber);
          }
          
          />
-         <button>+Add</button>
+         <button>Add</button>
          {!amountisValid&&<p>Limit cannot exceed upto 10</p>}
      </form>
     );

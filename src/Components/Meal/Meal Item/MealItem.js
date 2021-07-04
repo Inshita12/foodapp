@@ -1,26 +1,35 @@
-import React,{useContext} from "react";
+import React, { useContext } from "react";
 import Card from "../../UI/Card/Card";
 import MealForm from "../MealForm/MealForm";
-import "./MealItem.css";
-import CartContext from '../../../assets/StoreItems/CartContext';
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faRupeeSign } from "@fortawesome/free-solid-svg-icons";
+import CartContext from "../../../assets/StoreItems/CartContext";
+library.add(faRupeeSign);
 const MealItems = (props) => {
-    const cartCtx=useContext(CartContext);
+  const cartCtx = useContext(CartContext);
   const addToCartHandler = (amount) => {
-cartCtx.additem({
-    id:props.id,
-    name:props.name,
-    amount:amount,
-    price:props.price
-});
+    cartCtx.additem({
+      id: props.id,
+      name: props.name,
+      amount: amount,
+      price: props.price,
+    });
   };
   return (
     <div>
       <Card>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSd89oZj-L_wcSHVQ0vcLUFaP2fLcY-p9Km6A&usqp=CAU" alt=""></img>
         <li id="meal-item">
-          <h3>{props.name}</h3>
-          <div id="meal-item__description">{props.description}</div>
-          <div id="meal-item__price">Rs.{props.price}</div>
+          <span id="meal-item-name">{props.name}</span>
+          <span id="meal-item-description">{props.description}</span>
+          <span id="meal-item-price">
+            {" "}
+            <FontAwesomeIcon icon="rupee-sign" />&ensp;
+            {props.price}
+            &ensp;
+            <span>for one</span>
+          </span>
         </li>
         <div>
           <MealForm id={props.id} onAddtoCart={addToCartHandler} />
